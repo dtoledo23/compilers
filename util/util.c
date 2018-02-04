@@ -11,31 +11,6 @@ const char *delimiter_characters = " /\n\t";
 const char *blank_characters = " \n\t";
 FILE *lexemeStart, *advance;
 
-bool isAlphabetic(char c) {
-  if (c >= 'a' && c <= 'z') return true;
-  if (c >= 'A' && c <= 'Z') return true;
-  return false;
-}
-
-bool isNumeric(char c) {
-  if (c >= '0' && c <= '9') return true;
-  return false;
-}
-
-bool isOctal(char c) {
-  if (c >= '0' && c <= '7') return true;
-  return false;
-}
-
-bool isHexadecimal(char c){
-  if (c >= '0' && c <= '9') return true;
-  if (c >= 'a' && c <= 'f') return true;
-  if (c >= 'A' && c <= 'F') return true;
-  if (c == 'x' || c == 'X') return true;
-  return false;
-}
-
-
 void initialize(const char* filename) {
   printf("Opening %s.\n", filename);
   lexemeStart = fopen(filename, "r");
