@@ -23,6 +23,5 @@ bool isHexadecimal(char c){
   if (c >= '0' && c <= '9') return true;
   if (c >= 'a' && c <= 'f') return true;
   if (c >= 'A' && c <= 'F') return true;
-  if (c == 'x' || c == 'X') return true;
   return false;
 }
