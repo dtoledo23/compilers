@@ -8,7 +8,7 @@
 #include "util/util.h"
 
 #define BUFFER_SIZE 1024
-#define LEXEME_TYPE_COUNT 11
+#define LEXEME_TYPE_COUNT 12
 
 const char* filename = "numbers.txt";
 char nameBuff[BUFFER_SIZE];
@@ -20,9 +20,8 @@ LEXEME *lexemes[LEXEME_TYPE_COUNT] = {
   // Tokens
   reserved, logic, 
   
-   // // Numbers
-  // floating, , natural, octal 
-  hexadecimal, octal, natural,
+   // Numbers
+  floating, hexadecimal, octal, natural,
 
   delimiter, punctuation,
 
