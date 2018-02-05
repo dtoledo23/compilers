@@ -3,19 +3,35 @@
 #include <string.h>
 #include "../util/util.h"
 
-static const char* lexemeName = "Natural number";
+static const char* naturalName = "Natural";
 
-bool isDigit(char c) {
-  return c >= '0' && c <= '9';
-}
+// States
+static const int INITIAL = 0;
+static const int NATURAL = 1;
+static const int REJECTED = 2;
 
 bool natural(char* name, char* token) {
-  int count = 0;
-  char c; 
+  int state = 0;
 
-  c = getNext();
-  if (c == '0' || !isDigit(c)) return false;
+  while(isNumeric(readNext())) {
+    char c = getNext();
+    switch(state) {
+      case INITIAL:
+        if (c == '0') state = REJECTED;
+        else state = NATURAL;
+        break;
+      case NATURAL:
+        break;
+      case REJECTED:
+        return false;
+    }
+  }
 
-  while(isDigit(getNext()));
-  return true;
+  if(state == NATURAL) {
+    stpcpy(name, naturalName);
+    readAdvance(token);
+    return true;
+  }
+
+  return false;
 }
