@@ -8,7 +8,7 @@
 #include "util/util.h"
 
 #define BUFFER_SIZE 1024
-#define LEXEME_TYPE_COUNT 12
+#define LEXEME_TYPE_COUNT 3
 
 const char* filename = "numbers.txt";
 char nameBuff[BUFFER_SIZE];
@@ -17,7 +17,7 @@ char tokenBuff[BUFFER_SIZE];
 typedef bool LEXEME(char*, char*);
 
 LEXEME *lexemes[LEXEME_TYPE_COUNT] = { 
-  reserved, identifier
+  reserved, identifier, delimiter
 
   // // Tokens
   // reserved, identifier, delimiter, punctuation,
@@ -34,8 +34,7 @@ int main(int argc, char *argv[]) {
   initialize(filename);
 
   while(hasNextToken()) {
-    int funcs = 2;
-    for(int i = 0; i < funcs; i++) {
+    for(int i = 0; i < LEXEME_TYPE_COUNT; i++) {
       LEXEME* lexeme = lexemes[i];
 
       bool accepted = lexeme(nameBuff, tokenBuff);
