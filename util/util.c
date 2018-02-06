@@ -73,7 +73,6 @@ bool skipBlanks() {
   bool moved = false;
   bool keepMoving = true;
 
-  // printf("Positions blanks 1 adv:%d  start:%d\n", ftell(advance), ftell(lexemeStart));
   while(isBlankChar(getNext())) {
     if (isfeof()) {
       acceptAdvance();
@@ -83,7 +82,6 @@ bool skipBlanks() {
     moved = true;
   }
 
-  // printf("Positions blanks 2 adv:%d  start:%d\n", ftell(advance), ftell(lexemeStart));
   // If not EOF we need to go back to keep
   // pointer at start of next token.
   if (moved) {
@@ -93,7 +91,6 @@ bool skipBlanks() {
     resetAdvance();
   }
 
-// printf("Positions blanks 3 adv:%d  start:%d\n", ftell(advance), ftell(lexemeStart));
   return moved;
 }
 
@@ -119,54 +116,32 @@ void moveToNextToken() {
   bool keepMoving = true;
 
   while(keepMoving) {
-    // printf("Positions moveNxt 1 adv:%d  start:%d\n", ftell(advance), ftell(lexemeStart));
     bool b = skipBlanks();
-    // printf("Positions moveNxt 2 adv:%d  start:%d\n", ftell(advance), ftell(lexemeStart));
     bool c = skipComment();
-    // printf("Positions moveNxt 3 adv:%d  start:%d\n", ftell(advance), ftell(lexemeStart));
-
-    // printf("skip results %d %d\n", b, c);
-    // printf("skip results2 %d\n", isfeof());
     if (isfeof()) break;
     keepMoving = b || c;
   }
 }
 
 bool hasNextToken() {
-
-  // printf("Positions nxt 1 adv:%d  start:%d\n", ftell(advance), ftell(lexemeStart));
   moveToNextToken();
-  // printf("has next token pos:%d eof:%d next:%c EOF:%d\n", ftell(advance), isfeof(), getNext(), EOF);
-  // move(advance, -1);
-
-  //  printf("Positions nxt 2 adv:%d  start:%d\n", ftell(advance), ftell(lexemeStart));
   return !isfeof();
 }
 
 char* nextToken() {
   if (!hasNextToken()) return NULL;
 
-  // printf("Positions1 adv:%d  start:%d\n", ftell(advance) ,ftell(lexemeStart));
-
   // Advance till next delimiter
   while(!isDelimiterChar(readNext())) getNext();
-
-  // We don't want the delimiter itself in the token.
-  // Except when the delimiter is a token.
-
-  // printf("Positions2 adv:%d  start:%d\n", ftell(advance) ,ftell(lexemeStart));
-  // printf(" n: %d\n", n);
 
   // Read advanced positions and append end of
   // string character at the end.
   int size = ftell(advance) - ftell(lexemeStart);
   readAdvance(buff);
   buff[size] = '\0';
-
-  // printf("Positions4 adv:%d  start:%d\n", ftell(advance), ftell(lexemeStart));
-  // printf("buff: %s, size: %d\n", buff, size);
   return buff;
 }
+
 int getCurrentLine() {
   long currentPos = ftell(lexemeStart);
   fseek(lexemeStart, 0, SEEK_SET);
