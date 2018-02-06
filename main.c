@@ -50,6 +50,7 @@ int main(int argc, char *argv[]) {
 
     // None of the lexemes accepted the next token.
     printf("Error in line %d\n", getCurrentLine());
+    break;
   }
 
 }
