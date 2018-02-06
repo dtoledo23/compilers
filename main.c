@@ -10,7 +10,7 @@
 #define BUFFER_SIZE 1024
 #define LEXEME_TYPE_COUNT 12
 
-const char* filename = "numbers.txt";
+const char* filename = "sample.txt";
 char nameBuff[BUFFER_SIZE];
 char tokenBuff[BUFFER_SIZE];
 
@@ -34,11 +34,13 @@ LEXEME *lexemes[LEXEME_TYPE_COUNT] = {
 
 int main(int argc, char *argv[]) {
   initialize(filename);
+  bool accepted;
   while(hasNextToken()) {
+    accepted = false;
     for(int i = 0; i < LEXEME_TYPE_COUNT; i++) {
       LEXEME* lexeme = lexemes[i];
 
-      bool accepted = lexeme(nameBuff, tokenBuff);
+      accepted = lexeme(nameBuff, tokenBuff);
       if (accepted) {
         printf("%s [%s]\n", nameBuff, tokenBuff);
         acceptAdvance();
@@ -49,8 +51,9 @@ int main(int argc, char *argv[]) {
     }
 
     // None of the lexemes accepted the next token.
-    printf("Error in line %d\n", getCurrentLine());
-    break;
+    if (!accepted) {
+      printf("Error in line %d\n", getCurrentLine());
+      break;
+    }
   }
-
 }
