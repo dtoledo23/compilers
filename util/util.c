@@ -167,3 +167,17 @@ char* nextToken() {
   // printf("buff: %s, size: %d\n", buff, size);
   return buff;
 }
+int getCurrentLine() {
+  long currentPos = ftell(lexemeStart);
+  fseek(lexemeStart, 0, SEEK_SET);
+
+  int i;
+  int lines = 1;
+  for(i = 0; i < currentPos; i++) {
+    char c = fgetc(lexemeStart);
+    if (c == '\n') {
+      lines++;
+    }
+  }
+  return lines;
+}

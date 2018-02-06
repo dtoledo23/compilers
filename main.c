@@ -16,10 +16,10 @@ char tokenBuff[BUFFER_SIZE];
 
 typedef bool LEXEME(char*, char*);
 
-LEXEME *lexemes[LEXEME_TYPE_COUNT] = { 
+LEXEME *lexemes[LEXEME_TYPE_COUNT] = {
   // Tokens
-  reserved, logic, 
-  
+  reserved, logic,
+
    // Numbers
   floating, hexadecimal, octal, natural,
 
@@ -33,25 +33,23 @@ LEXEME *lexemes[LEXEME_TYPE_COUNT] = {
 };
 
 int main(int argc, char *argv[]) {
-
   initialize(filename);
-
   while(hasNextToken()) {
     for(int i = 0; i < LEXEME_TYPE_COUNT; i++) {
       LEXEME* lexeme = lexemes[i];
 
       bool accepted = lexeme(nameBuff, tokenBuff);
-
       if (accepted) {
-        printf("Accepted: %s [%s]\n", nameBuff, tokenBuff);
+        printf("%s [%s]\n", nameBuff, tokenBuff);
         acceptAdvance();
         break;
       } else {
         resetAdvance();
       }
-      
     }
 
+    // None of the lexemes accepted the next token.
+    printf("Error in line %d\n", getCurrentLine());
   }
 
 }

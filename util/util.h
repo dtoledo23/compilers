@@ -14,6 +14,7 @@ char readNext();
 char getNext();
 bool hasNextToken();
 char* nextToken();
+int getCurrentLine();
 
 bool isAlphabetic(char c);
 bool isNumeric(char c);
