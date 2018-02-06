@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include "../util/util.h"
+#include "../util/families.h"
 
 static const char* hexadecimalName = "Hexadecimal";
 
@@ -21,7 +22,7 @@ static bool isX(char c) {
 }
 
 static bool isAccepted(char c) {
-  return isHexadecimal(c) || isE(c) || isX(c);
+  return isTokenAcceptedChar(c);
 }
 
 bool hexadecimal(char* name, char* token) {

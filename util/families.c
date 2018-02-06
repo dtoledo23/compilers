@@ -25,3 +25,23 @@ bool isHexadecimal(char c){
   if (c >= 'A' && c <= 'F') return true;
   return false;
 }
+
+bool isAlphanumeric(char c) {
+  return isAlphabetic(c) || isNumeric(c);
+}
+
+bool isDot(char c) {
+  return c == '.';
+}
+
+bool isUnderscore(char c) {
+  return c == '_';
+}
+
+bool isSign(char c) {
+  return c == '+' || c == '-';
+}
+
+bool isTokenAcceptedChar(char c) {
+  return isAlphanumeric(c) || isUnderscore(c);
+}

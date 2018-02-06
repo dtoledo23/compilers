@@ -2,15 +2,12 @@
 #include <string.h>
 #include <stdbool.h>
 #include "../util/util.h"
+#include "../util/families.h"
 
 static const char* identifierName = "Identifier";
 
-static bool isUnderscore(char c) {
-  return c == '_';
-}
-
 static bool isAccepted(char c) {
-  return isAlphabetic(c) || isNumeric(c) || isUnderscore(c);
+  return isTokenAcceptedChar(c);
 }
 
 // q0 - initial

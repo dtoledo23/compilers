@@ -16,9 +16,4 @@ bool hasNextToken();
 char* nextToken();
 int getCurrentLine();
 
-bool isAlphabetic(char c);
-bool isNumeric(char c);
-bool isOctal(char c);
-bool isHexadecimal(char c);
-
 #endif

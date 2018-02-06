@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include "../util/util.h"
+#include "../util/families.h"
 
 static const char* octalName = "Octal";
 
@@ -10,10 +11,14 @@ static const int INITIAL = 0;
 static const int OCTAL = 1;
 static const int REJECTED = 2;
 
+static bool isAccepted(char c) {
+  return isTokenAcceptedChar(c);
+}
+
 bool octal(char* name, char* token) {
   int state = 0;
 
-  while(isOctal(readNext())) {
+  while(isAccepted(readNext())) {
     char c = getNext();
     switch(state) {
       case INITIAL:

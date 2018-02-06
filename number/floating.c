@@ -2,24 +2,17 @@
 #include <string.h>
 #include <stdbool.h>
 #include "../util/util.h"
+#include "../util/families.h"
 
 static const char* floatingName = "Floating";
 
-static bool isSign(char c) {
-  return c == '+' || c == '-';
-}
-
-static bool isDot(char c) {
-  return c == '.';
-}
 
 static bool isE(char c) {
   return c == 'e' || c == 'E';
 }
 
 static bool isAccepted(char c) {
-  return isNumeric(c) 
-    || isE(c) 
+  return isTokenAcceptedChar(c)
     || isDot(c) 
     || isSign(c);
 }
