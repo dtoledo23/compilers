@@ -1,0 +1,8 @@
+// Comentario
+begin
+x = 067; // asigna x
+y = 0x3F5A; // comentario
+z = 0.32e-4; // otro comentario
+if x + 34 > y or z == 0.4 then imprime(x,y);
+else imprime(y,5z);
+end
