@@ -4,7 +4,7 @@
 #include "../util/util.h"
 #include "../util/families.h"
 
-static const char* hexadecimalName = "Hexadecimal";
+static const char* hexadecimalName = "Hexadecimal number";
 
 // States
 static const int INITIAL = 0;

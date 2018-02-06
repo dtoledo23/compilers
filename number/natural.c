@@ -4,7 +4,7 @@
 #include "../util/util.h"
 #include "../util/families.h"
 
-static const char* naturalName = "Natural";
+static const char* naturalName = "Natural number";
 
 // States
 static const int INITIAL = 0;
