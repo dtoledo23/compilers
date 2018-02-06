@@ -14,26 +14,41 @@ const char* filename = "sample.txt";
 char nameBuff[BUFFER_SIZE];
 char tokenBuff[BUFFER_SIZE];
 
+// Lexeme analyzer function type. It uses logic in utils to transverse a file.
+// Return true if the next token in file matches with the given lexeme.
+// If accepted, (returns true): The function will put the lexeme name in the first 
+// parameter and the read token in the second.
+// If rejected. It does nothing other than move the 'advance' file pointer.
 typedef bool LEXEME(char*, char*);
 
+// It states the priority of one lexeme over another. 
+// When a token is available to analize. The lexemes will be executed in this order
+// stopping when one of them is accepted.
 LEXEME *lexemes[LEXEME_TYPE_COUNT] = {
   // Tokens
-  reserved, logic,
+  reserved, 
+  logic, 
+  identifier,
 
    // Numbers
-  floating, hexadecimal, octal, natural,
+  floating, 
+  hexadecimal, 
+  octal, 
+  natural,
 
-  delimiter, punctuation,
+  // Comparations (two characters)
+  relation,
 
-  // Operators
-  arithmetics, relation, asignation,
-
-  identifier
-  // 
+  // Single characters operations or symbols.
+  delimiter,
+  asignation,
+  punctuation,
+  arithmetics
 };
 
 int main(int argc, char *argv[]) {
   initialize(filename);
+  
   bool accepted;
   while(hasNextToken()) {
     accepted = false;
@@ -56,4 +71,6 @@ int main(int argc, char *argv[]) {
       break;
     }
   }
+
+   printf("End of execution\n");
 }
