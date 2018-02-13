@@ -26,6 +26,8 @@ bool octal(char* name, char* token) {
         else state = REJECTED;
         break;
       case OCTAL:
+        if (isOctal(c)) state = OCTAL;
+        else state = REJECTED;
         break;
       case REJECTED:
         return false;
