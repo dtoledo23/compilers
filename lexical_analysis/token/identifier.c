@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include "../../common/names.h"
 #include "../util/util.h"
 #include "../util/families.h"
 
-static const char* identifierName = "Identifier";
 
 static bool isAccepted(char c) {
   return isTokenAcceptedChar(c);
@@ -15,7 +15,7 @@ static bool isAccepted(char c) {
 // q2 - missing alphabetic
 // q3 - rejected
 
-bool identifier(char* name, char* token) {
+bool is_identifier(char* name, char* token) {
   int currentState = 0;
 
   while(isAccepted(readNext())) {
@@ -43,7 +43,7 @@ bool identifier(char* name, char* token) {
   }
 
   if (currentState == 1) {
-    stpcpy(name, identifierName);
+    stpcpy(name, identifier);
     readAdvance(token);
     return true;
   }

@@ -1,14 +1,11 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include "../../common/names.h"
 #include "../util/util.h"
 
-static const char* leftParenthesis = "Left Parenthesis";
-static const char* rightParenthesis = "Right Parenthesis";
-static const char* leftBrackets = "Left Brackets";
-static const char* rightBrackets = "Right Brackets";
 
-bool delimiter(char* name, char* token) {
+bool is_delimiter(char* name, char* token) {
   char c = getNext();
   bool accepted = false;
 

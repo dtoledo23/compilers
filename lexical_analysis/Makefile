@@ -3,6 +3,7 @@ CFLAGS=-I.
 PROGRAM=main
 
 all:
+	$(CC) -c ../common/*.c
 	$(CC) -c number/*.c
 	$(CC) -c operator/*.c
 	$(CC) -c token/*.c

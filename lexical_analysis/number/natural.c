@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
+#include "../../common/names.h"
 #include "../util/util.h"
 #include "../util/families.h"
 
-static const char* naturalName = "Natural number";
 
 // States
 static const int INITIAL = 0;
@@ -15,7 +15,7 @@ static bool isAccepted(char c) {
   return isTokenAcceptedChar(c);
 }
 
-bool natural(char* name, char* token) {
+bool is_natural(char* name, char* token) {
   int state = 0;
 
   while(isAccepted(readNext())) {
@@ -36,7 +36,7 @@ bool natural(char* name, char* token) {
   }
 
   if(state == NATURAL) {
-    stpcpy(name, naturalName);
+    stpcpy(name, natural);
     readAdvance(token);
     return true;
   }

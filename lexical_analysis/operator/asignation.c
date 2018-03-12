@@ -1,16 +1,16 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include "../../common/names.h"
 #include "../util/util.h"
 
-static const char* asignationName = "Asignation";
 
-bool asignation(char* name, char* token) {
+bool is_asignation(char* name, char* token) {
   char c = getNext();
   bool accepted = false;
 
   if (c == '=') {
-    strcpy(name, asignationName);
+    strcpy(name, asignation);
     accepted = true;
   }
 

@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include "../../common/names.h"
 #include "../util/util.h"
 #include "../util/families.h"
-
-static const char* floatingName = "Floating number";
 
 
 static bool isE(char c) {
@@ -27,7 +26,7 @@ static const int EXP_SIGN = 5;
 static const int EXP_NUM = 6;
 static const int REJECTED = 7;
 
-bool floating(char* name, char* token) {
+bool is_floating(char* name, char* token) {
   int state = 0;
 
   while(isAccepted(readNext())) {
@@ -70,7 +69,7 @@ bool floating(char* name, char* token) {
   }
 
   if(state == MANTISA2 || state == EXP_NUM) {
-    stpcpy(name, floatingName);
+    stpcpy(name, floating);
     readAdvance(token);
     return true;
   }

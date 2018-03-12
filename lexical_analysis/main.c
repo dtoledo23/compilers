@@ -10,7 +10,6 @@
 #define BUFFER_SIZE 1024
 #define LEXEME_TYPE_COUNT 12
 
-const char* filename = "sample.txt";
 char nameBuff[BUFFER_SIZE];
 char tokenBuff[BUFFER_SIZE];
 
@@ -26,29 +25,30 @@ typedef bool LEXEME(char*, char*);
 // stopping when one of them is accepted.
 LEXEME *lexemes[LEXEME_TYPE_COUNT] = {
   // Tokens
-  reserved, 
-  logic, 
-  identifier,
+  is_reserved, 
+  is_logic, 
+  is_identifier,
 
    // Numbers
-  floating, 
-  hexadecimal, 
-  octal, 
-  natural,
+  is_floating, 
+  is_hexadecimal, 
+  is_octal, 
+  is_natural,
 
   // Comparations (two characters)
-  relation,
+  is_relation,
 
   // Single characters operations or symbols.
-  delimiter,
-  asignation,
-  punctuation,
-  arithmetics
+  is_delimiter,
+  is_asignation,
+  is_punctuation,
+  is_arithmetics
 };
 
-int main(int argc, char *argv[]) {
+int lexical_analysis(const char* filename, char* tokens[], int* tokens_count) {
   initialize(filename);
-  
+  (*tokens_count) = 0;
+
   bool accepted;
   while(hasNextToken()) {
     accepted = false;
@@ -58,6 +58,7 @@ int main(int argc, char *argv[]) {
       accepted = lexeme(nameBuff, tokenBuff);
       if (accepted) {
         printf("%s [%s]\n", nameBuff, tokenBuff);
+        tokens[(*tokens_count)++] = strdup(nameBuff);
         acceptAdvance();
         break;
       } else {
@@ -68,9 +69,18 @@ int main(int argc, char *argv[]) {
     // None of the lexemes accepted the next token.
     if (!accepted) {
       printf("Error in line %d\n", getCurrentLine());
-      break;
+      return (*tokens_count);
     }
   }
 
    printf("End of execution\n");
+   return 0;
+}
+
+int main(int argc, char *argv[]) {
+  const char* filename = "sample.txt";
+  char* tokens[BUFFER_SIZE];
+  int tokens_counts;
+
+  return lexical_analysis(filename, tokens, &tokens_counts);
 }

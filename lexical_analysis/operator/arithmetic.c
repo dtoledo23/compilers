@@ -1,34 +1,31 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include "../../common/names.h"
 #include "../util/util.h"
 
-static const char* sumName = "Sum";
-static const char* substractionName = "Substraction";
-static const char* multiplicationName = "Multiplication";
-static const char* divisionName = "Division";
 
-bool arithmetics(char* name, char* token) {
+bool is_arithmetics(char* name, char* token) {
   char c = getNext();
   bool accepted = false;
 
   if (c == '+') {
-    strcpy(name, sumName);
+    strcpy(name, sum);
     accepted = true;
   }
 
   if (c == '-') {
-    strcpy(name, substractionName);
+    strcpy(name, substraction);
     accepted = true;
   }
 
   if (c == '*') {
-    strcpy(name, multiplicationName);
+    strcpy(name, multiplication);
     accepted = true;
   }
 
    if (c == '/') {
-    strcpy(name, divisionName);
+    strcpy(name, division);
     accepted = true;
   }
 

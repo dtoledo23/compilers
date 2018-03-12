@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include "../../common/names.h"
 #include "../util/util.h"
 #include "../util/families.h"
 
-static const char* octalName = "Octal number";
 
 // States
 static const int INITIAL = 0;
@@ -15,7 +15,7 @@ static bool isAccepted(char c) {
   return isTokenAcceptedChar(c);
 }
 
-bool octal(char* name, char* token) {
+bool is_octal(char* name, char* token) {
   int state = 0;
 
   while(isAccepted(readNext())) {
@@ -35,7 +35,7 @@ bool octal(char* name, char* token) {
   }
 
   if(state == OCTAL) {
-    stpcpy(name, octalName);
+    stpcpy(name, octal);
     readAdvance(token);
     return true;
   }

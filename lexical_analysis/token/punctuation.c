@@ -1,28 +1,26 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include "../../common/names.h"
 #include "../util/util.h"
 
-static const char* dotName = "Dot";
-static const char* commaName = "Comma";
-static const char* semiColonName = "Semicolon";
 
-bool punctuation(char* name, char* token) {
+bool is_punctuation(char* name, char* token) {
   char c = getNext();
   bool accepted = false;
 
   if (c == '.') {
-    strcpy(name, dotName);
+    strcpy(name, dot);
     accepted = true;
   }
 
   if (c == ',') {
-    strcpy(name, commaName);
+    strcpy(name, comma);
     accepted = true;
   }
 
   if (c == ';') {
-    strcpy(name, semiColonName);
+    strcpy(name, semiColon);
     accepted = true;
   }
 

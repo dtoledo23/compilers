@@ -1,16 +1,11 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include "../../common/names.h"
 #include "../util/util.h"
 
-static const char* acceptedChars = "=!<>";
 
-static const char* equality = "Equality operator";
-static const char* inequality = "Inequality operator";
-static const char* greater = "Greater operator";
-static const char* smaller = "Smaller operator";
-static const char* greaterOrEqual = "Greater or Equal operator";
-static const char* smallerOrEqual = "Smaller or Equal operator";
+static const char* acceptedChars = "=!<>";
 
 static bool isAccepted(char c) {
   return strchr(acceptedChars, c) != NULL;
@@ -29,7 +24,7 @@ static const int SMALLER_OR_EQUAL = 8;
 static const int REJECTED = 9;
 
 
-bool relation(char* name, char* token) {
+bool is_relation(char* name, char* token) {
   int state = 0;
 
   while(isAccepted(readNext())) {

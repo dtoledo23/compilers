@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include "../../common/names.h"
 #include "../util/util.h"
 #include "../util/families.h"
 
-static const char* hexadecimalName = "Hexadecimal number";
 
 // States
 static const int INITIAL = 0;
@@ -25,7 +25,7 @@ static bool isAccepted(char c) {
   return isTokenAcceptedChar(c);
 }
 
-bool hexadecimal(char* name, char* token) {
+bool is_hexadecimal(char* name, char* token) {
   int state = 0;
 
   while(isAccepted(readNext())) {
@@ -53,7 +53,7 @@ bool hexadecimal(char* name, char* token) {
   }
 
   if(state == HEX) {
-    stpcpy(name, hexadecimalName);
+    stpcpy(name, hexadecimal);
     readAdvance(token);
     return true;
   }
