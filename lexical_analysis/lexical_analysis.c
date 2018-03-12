@@ -73,6 +73,5 @@ int lexical_analysis(const char* filename, char* tokens[], int* tokens_count) {
     }
   }
 
-   printf("End of execution\n");
    return 0;
 }
