@@ -1,6 +1,6 @@
 CC=gcc
 CFLAGS=-I.
-PROGRAM=main
+PROGRAM=toledo_compiler
 
 all:
 	$(CC) -c ./common/*.c
