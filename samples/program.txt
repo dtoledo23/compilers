@@ -1,0 +1,12 @@
+// if example
+error = thereisanderror;
+if x != 2 then
+  repeat
+    x = 34 + 1;
+    read x;
+    write 54
+  until y >= 2
+else 
+  read fromHere;
+  assign = something * somethingelse - this
+end

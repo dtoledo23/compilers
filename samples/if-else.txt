@@ -1,0 +1,9 @@
+// if-else example
+if x > 3 then
+  write error;
+  read input
+else 
+  read input;
+  write error
+end
+

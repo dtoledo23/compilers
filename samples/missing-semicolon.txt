@@ -1,0 +1,3 @@
+// Missing semicolon, shoudl fail
+x = 34 + 1
+read x

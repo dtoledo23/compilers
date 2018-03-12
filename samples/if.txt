@@ -1,0 +1,6 @@
+// if example
+error = thereisanderror;
+if x != 2 then
+  write error
+end
+

@@ -1,0 +1,7 @@
+// Loop example
+repeat
+  x = 34 + 1;
+  read x;
+  write 54
+until y >= 2
+
