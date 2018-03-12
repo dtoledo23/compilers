@@ -8,6 +8,7 @@ all:
 	$(CC) -c operator/*.c
 	$(CC) -c token/*.c
 	$(CC) -c util/*.c
+	$(CC) -c lexical_analysis.c
 	$(CC) -o $(PROGRAM) *.o main.c
 
 run: all
